@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Define the root logger level and the appender to use -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+
+    <!-- Console appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File appender -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/elk-stack.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and keep 30 days' worth of history -->
+            <fileNamePattern>logs/elk-stack.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger for specific packages -->
+    <logger name="com.sree" level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <!-- Logger for SQL (Hibernate or JPA) -->
+    <logger name="org.hibernate.SQL" level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <!-- Logger for SQL parameters -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+</configuration>

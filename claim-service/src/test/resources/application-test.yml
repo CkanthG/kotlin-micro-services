@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:${POSTGRES_PORT:5432}/testdb"
+    username: postgres
+    password: password
+    initialization-mode: always
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+eureka:
+  client:
+    enabled: false

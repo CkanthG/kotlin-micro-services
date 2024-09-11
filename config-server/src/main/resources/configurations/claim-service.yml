@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: "jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME_USER_SERVICE:claims}"
+    platform: postgresql
+    driverClassName: org.postgresql.Driver
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:password}
+    hikari:
+      data-source-properties: stringtype=unspecified
+    tomcat:
+      connection-properties: stringtype=unspecified
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        default_schema: public
+        format_sql: false
+        jdbc:
+          batch_size: 20000
+          lob:
+            non_contextual_creation: true
+server:
+  port: 8881

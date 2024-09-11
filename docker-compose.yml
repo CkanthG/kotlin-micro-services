@@ -1,0 +1,21 @@
+services:
+  Elasticsearch:
+    image: elasticsearch:8.15.0
+    container_name: elasticsearch
+    restart: always
+    volumes:
+      - elastic_data:/usr/share/elasticsearch/data/
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      discovery.type: single-node
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    networks:
+      - elk
+
+volumes:
+  elastic_data: {}
+
+networks:
+  elk:
