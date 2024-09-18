@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: user-service
+  config:
+    import: optional:configserver:http://localhost:8888
+  security:
+    user:
+      name: user
+      password: password
+logging:
+  level:
+    root: INFO
+    com:
+      sree:
+        user: DEBUG # for detailed log on entire application, please enable to DEBUG.
+    org:
+      hibernate: ERROR

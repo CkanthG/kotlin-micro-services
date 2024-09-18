@@ -1,0 +1,11 @@
+spring:
+  data:
+    mongodb:
+      username: root
+      password: ${MONGO_DB_PASSWORD:example}
+      host: ${MONGO_DB_HOST:localhost}
+      port: ${MONGO_DB_PORT:27018}
+      database: users
+      authentication-database: admin
+server:
+  port: 8882

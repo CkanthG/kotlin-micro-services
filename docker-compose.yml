@@ -13,9 +13,52 @@ services:
       - '9300:9300'
     networks:
       - elk
+#  postgresql:
+#    container_name: postgresql
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_USER: sreekanth
+#      POSTGRES_PASSWORD: sreekanth
+#      PGDATA: /data/postgres
+#    volumes:
+#      - postgres:/data/postgres
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - elk
+#    restart: unless-stopped
+
+  mongodb:
+    image: mongo
+    container_name: kt_mongo_db
+    ports:
+      - "27018:27017"
+    expose:
+      - 27018
+    volumes:
+      - mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    container_name: kt_mongo_express
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_SERVER: mongodb
 
 volumes:
   elastic_data: {}
+#  postgres:
+  mongo:
+    driver: local
 
 networks:
   elk:
