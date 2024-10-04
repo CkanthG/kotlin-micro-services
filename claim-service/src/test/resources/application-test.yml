@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:${POSTGRES_PORT:5432}/testdb"
+    url: "jdbc:postgresql://localhost:5432/claims"
     username: postgres
     password: password
     initialization-mode: always
@@ -8,6 +8,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
 eureka:
   client:
     enabled: false
+application:
+  config:
+    user-service-url: http://user-service/api/v1/users

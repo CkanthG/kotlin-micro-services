@@ -80,7 +80,6 @@ class UserServiceApplicationIT {
     @Test
     fun test_createUser_withValidData_shouldReturn_201() {
         authenticated()
-            .auth().basic("user", "password")
             .contentType(ContentType.JSON)
             .body(userDTO)
             .post(USER_URL)
@@ -93,7 +92,6 @@ class UserServiceApplicationIT {
     fun test_updateUser_withValidData_shouldReturn_200() {
         val user = userService.createUser(userDTO)
         authenticated()
-            .auth().basic("user", "password")
             .contentType(ContentType.JSON)
             .body(updateUserDTO)
             .put("$USER_URL/${user.id}")
@@ -106,7 +104,6 @@ class UserServiceApplicationIT {
     fun test_getAllUser_withValidData_shouldReturn_200() {
         userService.createUser(userDTO)
         authenticated()
-            .auth().basic("user", "password")
             .get(USER_URL)
             .then()
             .log().ifValidationFails()
@@ -117,7 +114,6 @@ class UserServiceApplicationIT {
     fun test_getUserById_withValidData_shouldReturn_200() {
         val user = userService.createUser(userDTO)
         authenticated()
-            .auth().basic("user", "password")
             .get("$USER_URL/${user.id}")
             .then()
             .log().ifValidationFails()
@@ -128,7 +124,6 @@ class UserServiceApplicationIT {
     fun test_deleteUserById_withValidData_shouldReturn_204() {
         val user = userService.createUser(userDTO)
         authenticated()
-            .auth().basic("user", "password")
             .delete("$USER_URL/${user.id}")
             .then()
             .log().ifValidationFails()

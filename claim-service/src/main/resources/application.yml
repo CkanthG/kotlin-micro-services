@@ -3,3 +3,17 @@ spring:
     name: claim-service
   config:
     import: optional:configserver:http://localhost:8888
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+logging:
+  level:
+    root: INFO
+    com:
+      sree:
+        claims: DEBUG # for detailed log on entire application, please enable to DEBUG.
+    org:
+      hibernate: ERROR

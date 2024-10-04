@@ -52,6 +52,15 @@ class UserService(
     }
 
     /**
+     * This method will get specific user record from db by its name.
+     */
+    fun getUserByName(username: String): UserDTO {
+        return userRepository.findByUsername(username).map { user -> userEntityToUserDTO(user) }.orElseThrow {
+            UserNotFoundException(HttpStatus.NOT_FOUND, "User not found with username: $username")
+        }
+    }
+
+    /**
      * This method will update specific user record inside db by its id.
      */
     fun updateUser(id: Int, userDTO: UserDTO): UserDTO {
@@ -75,10 +84,10 @@ class UserService(
         val userId:Int = id ?: (id ?: (getMaxUserId() + 1))
         val user = User()
             user.id = userId
-            user.username = userDTO.username
-            user.email = userDTO.email
-            user.mobileNumber = userDTO.mobileNumber
-            user.password = userDTO.password
+            user.username = userDTO.username ?: ""
+            user.email = userDTO.email ?: ""
+            user.mobileNumber = userDTO.mobileNumber ?: ""
+            user.password = userDTO.password ?: ""
             user.address = Address(
                 userDTO.address?.street ?: "",
                 userDTO.address?.city ?: "",

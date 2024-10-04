@@ -1,4 +1,4 @@
-package com.sree.user.advice
+package com.sree.claims.advice
 
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
@@ -17,7 +17,7 @@ class LoggerAdvice {
     /**
      * Defines a pointcut that matches the execution of any method within the "com.sree.user" package and its sub-packages.
      */
-    @Pointcut(value = "execution(* com.sree.user.*.*.*(..))")
+    @Pointcut(value = "execution(* com.sree.claims.*.*.*(..))")
     fun pointcut() {
         // implementation is not required.
     }

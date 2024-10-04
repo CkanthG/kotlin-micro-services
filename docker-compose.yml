@@ -13,20 +13,20 @@ services:
       - '9300:9300'
     networks:
       - elk
-#  postgresql:
-#    container_name: postgresql
-#    image: postgres:latest
-#    environment:
-#      POSTGRES_USER: sreekanth
-#      POSTGRES_PASSWORD: sreekanth
-#      PGDATA: /data/postgres
-#    volumes:
-#      - postgres:/data/postgres
-#    ports:
-#      - "5432:5432"
-#    networks:
-#      - elk
-#    restart: unless-stopped
+  postgresql:
+    container_name: postgresql
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - elk
+    restart: unless-stopped
 
   mongodb:
     image: mongo
@@ -56,7 +56,7 @@ services:
 
 volumes:
   elastic_data: {}
-#  postgres:
+  postgres:
   mongo:
     driver: local
 

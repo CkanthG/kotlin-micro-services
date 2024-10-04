@@ -24,3 +24,6 @@ spring:
             non_contextual_creation: true
 server:
   port: 8881
+application:
+  config:
+    user-service-url: http://user-service/api/v1/users

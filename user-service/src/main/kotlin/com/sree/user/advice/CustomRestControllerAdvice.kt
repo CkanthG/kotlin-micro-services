@@ -29,8 +29,8 @@ class CustomRestControllerAdvice {
         methodArgumentNotValidException: MethodArgumentNotValidException
     ): ResponseEntity<HashMap<String, String>> {
         val map = HashMap<String, String>()
-        methodArgumentNotValidException.bindingResult.fieldErrors.forEach {
-            fieldError ->
+        methodArgumentNotValidException.fieldErrors.forEach {
+                fieldError ->
             map[fieldError.field] = fieldError?.defaultMessage ?: ""
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(map)

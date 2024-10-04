@@ -64,6 +64,16 @@ class UserController(
     }
 
     /**
+     * This method is used to fetch user information by name.
+     * @param name is used to identify the user to fetch.
+     * @return matched user information.
+     */
+    @GetMapping("/username/{user-name}")
+    fun getUserByName(@PathVariable(name = "user-name") username: String): ResponseEntity<UserDTO> {
+        return ResponseEntity.ok(userService.getUserByName(username))
+    }
+
+    /**
      * This method is used to delete user information by id.
      * @param id is used to identify the user to delete.
      * deletes the matched user information.

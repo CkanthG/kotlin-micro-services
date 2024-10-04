@@ -1,4 +1,4 @@
-package com.sree.user.dto
+package com.sree.claims.dto
 
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
@@ -10,11 +10,11 @@ import org.springframework.validation.annotation.Validated
 @Validated
 data class AddressDTO(
     @field:NotBlank(message = "street is mandatory")
-    val street:String? = null,
+    val street:String,
     @field:NotBlank(message = "city is mandatory")
-    val city:String? = null,
+    val city:String,
     @field:NotBlank(message = "country is mandatory")
-    val country:String? = null,
+    val country:String,
     @field:Min(value = 12099, message = "zipcode is mandatory")
-    val zipcode:Int? = null
+    val zipcode:Int
 )
